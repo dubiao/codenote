@@ -1,5 +1,6 @@
-logo: /asset/mehead.jpeg
-rss: /atom.xml
+logo: /codenote/asset/mehead.jpeg
+rss: /codenote/atom.xml
+root: /codenote/
 disqus:
 google_analytics:
 
