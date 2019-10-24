@@ -1,6 +1,8 @@
 ---
 title: Factory Images for Nexus and Pixel Devices
 date: 2019-10-18 10:36:16
+categories:
+- Flash ROM
 ---
 
 This page contains binary image files that allow you to restore your Nexus or Pixel device's original factory firmware. You will find these files useful if you have flashed custom builds on your device, and wish to return your device to its factory state.

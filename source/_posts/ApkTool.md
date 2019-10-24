@@ -18,9 +18,22 @@ $ apktool d my.apk
 ```
 
 ## dex to jar d2j-dex2jar.jar
+项目地址：https://github.com/pxb1988/dex2jar
+但这个是源码，我是从 [sourceforge](https://sourceforge.net/projects/dex2jar/files/latest/download) 上下载的。
+也可以从这里下：[sourceforge](./dex2jar-2.0.zip)
+下载解压后，从终端里 cd 到这个目录，然后执行一下：
 ```
-$ d2j-dex2jar.sh <myapk.apk>
+$ chmod +x *.sh
 ```
+这样就可以把所有的`sh`文件变成可执行的了。
+（要不然会报错，因为在 d2j-dex2jar.sh 程序里直接执行了 d2j_invoke.sh 程序。但那个程序不能直接执行）
+然后就可以通过以后命令来把 dex 文件变成 jar 文件了。
+```
+$ d2j-dex2jar.sh <classes.dex>
+```
+这个 `classes.dex` 文件就是把 *apk* 文件当成 *zip* 解压之后里面的那个 *dex* 文件。
+如果你的电脑不能直接解压，也可以把 *apk* 文件的后缀名改成 *zip* 就行了。
+有些 *apk* 里可能有多个 *dex* 文件。一般大的那个是主要的代码部分，小的有可能是“*加固*”产生的。
 
 ## aapt 查看 apk 信息
 aapt 一般不在环境变量 PATH 中，一般在
