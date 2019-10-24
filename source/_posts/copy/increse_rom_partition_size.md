@@ -2,6 +2,7 @@
 title: "[GUIDE] Increase your Nexus 4 s system partition for more space!"
 date: 2019-10-18 10:37:05
 categories:
+- Android
 - Flash ROM
 tags:
 - Android
@@ -10,6 +11,8 @@ tags:
 - XDA
 url: https://forum.xda-developers.com/nexus-4/general/guide-increase-nexus-4s-partition-space-t3800264
 ---
+
+> from [XDA](https://forum.xda-developers.com/nexus-4/general/guide-increase-nexus-4s-partition-space-t3800264)
 
 I got tired of installing amazing ROMs created by the talented folks here on XDA, but being held back on things like Google Apps because of the tiny /system partition we have on the Nexus 4. I looked around and found guides to increase the system space in the Nexus 5 and Nexus 7 2013, so I basically just adapted them to work on our beloved Nexus 4.
 
@@ -118,3 +121,6 @@ I hope I helped y'all out and feel free to post if this guide worked for you or 
 CREDITS:
 @surfrock66 for his Nexus 5 guide [here](https://forum.xda-developers.com/google-nexus-5/general/guide-repartition-nexus5-to-increase-t3509880).
 @rkhat for his Nexus 7 2013 guide [here](https://forum.xda-developers.com/nexus-7-2013/general/guide-repartition-nexus72013-to-t3599907).
+
+
+[Download parted](./parted)
