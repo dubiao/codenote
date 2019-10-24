@@ -10,6 +10,7 @@ tag:
 - Nexus
 - Pixel
 - Factory Image
+- 刷机
 - Google
 ---
 

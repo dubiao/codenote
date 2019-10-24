@@ -8,6 +8,7 @@ tags:
 - Android
 - recovery
 - Nexus4
+- 刷机
 - XDA
 url: https://forum.xda-developers.com/nexus-4/general/guide-increase-nexus-4s-partition-space-t3800264
 ---
