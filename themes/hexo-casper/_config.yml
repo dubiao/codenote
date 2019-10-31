@@ -1,7 +1,7 @@
 # Config
 rss:            # link
 favicon: https://i.loli.net/2017/11/26/5a19c0b50432e.png
-blog_logo: 
+blog_logo:
 header_image: https://i.loli.net/2017/11/26/5a19c56faa29f.jpg
 bio: This is a demo
 post_toc: true
@@ -17,22 +17,22 @@ menu:
 
 # author
 author_image:   # link
-author_bio: 
-author_location: 
+author_bio:
+author_location:
 
 # Social Links
 social:
-  weibo: https://weibo.com/xzhih
-  github: https://github.com/xzhih
-  twitter: https://twitter.com
-  facebook: https://facebook
-  telegram:
-  bilibili: 
-  youtube: 
+  weibo:
+  github: https://github.com/dubiao
+  twitter: https://twitter.com/link_biao
+  facebook:
+  telegram: https://t.me/link_biao
+  bilibili:
+  youtube:
   # You only can use that I have added, I will keep adding
 
 # Footer Links
-footer_text: 
+footer_text:
   # title: link
   # 粤ICP备xxxxxxx号-x: http://www.miitbeian.gov.cn
   # 粤公网安备xxxxxxx号: http://www.beian.gov.cn
@@ -63,11 +63,11 @@ local_search: true
 # https://valine.js.org
 comment: true
 valine:
-  notify: false # mail notifier , https://github.com/xCss/Valine/wiki 
+  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
-  appId: # your leancloud application appid
-  appKey: # your leancloud application appkey
-  placeholder: Just go go # comment box placeholder
+  appId: B0rlNNVTefUvDwjgmvOcvxJl-gzGzoHsz # your leancloud application appid
+  appKey: ixDdPojgAU5ut98M3eNsgBRI # your leancloud application appkey
+  placeholder: Say something # comment box placeholder
   pageSize: 10 # pagination size
   avatar: mm # gravatar style
   visitor: true # page view record
