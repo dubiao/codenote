@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>[GUIDE] Increase your Nexus 4 s system partition for more space! | Code Notebook</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="Bill">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="https://i.loli.net/2017/11/26/5a19c0b50432e.png">
+	<link rel="apple-touch-icon" href="https://i.loli.net/2017/11/26/5a19c0b50432e.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Code Notebook">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="[GUIDE] Increase your Nexus 4 s system partition for more space! | Code Notebook">
+	<meta property="og:description" content>
+	<meta property="og:url" content="http://dubiao.github.io/codenote/codenote/Android/Flash-ROM/2019/copy/increse_rom_partition_size/">
+
+	
+	<meta property="article:published_time" content="2019-10-18T10:10:00+08:00"> 
+	<meta property="article:author" content="Bill">
+	<meta property="article:published_first" content="Code Notebook, /codenote/Android/Flash-ROM/2019/copy/increse_rom_partition_size/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/codenote/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                <a href="/codenote/" title="Home">HOME</a>
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/dubiao" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com/link_biao" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="telegram" href="https://t.me/link_biao" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M679.428571 746.857143l84-396q5.142857-25.142857-6-36t-29.428571-4L234.285714 501.142857q-16.571429 6.285714-22.571428 14.285714t-1.428572 15.142858 18.285715 11.142857l126.285714 39.428571 293.142857-184.571428q12-8 18.285714-3.428572 4 2.857143-2.285714 8.571429l-237.142857 214.285714-9.142857 130.285714q13.142857 0 25.714285-12.571428l61.714286-59.428572 128 94.285715q36.571429 20.571429 46.285714-21.714286z m344.571429-234.857143q0 104-40.571429 198.857143t-109.142857 163.428571-163.428571 109.142857-198.857143 40.571429-198.857143-40.571429-163.428571-109.142857-109.142857-163.428571T0 512t40.571429-198.857143 109.142857-163.428571T313.142857 40.571429 512 0t198.857143 40.571429 163.428571 109.142857 109.142857 163.428571 40.571429 198.857143z"/></svg>
+    </a>
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-10-18T02:37:05.000Z">
+                    2019-10-18
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/codenote/categories/Android/">Android</a>&nbsp;&nbsp;
+                
+                <a href="/codenote/categories/Android/Flash-ROM/">Flash ROM</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">[GUIDE] Increase your Nexus 4 s system partition for more space!</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <blockquote>
+<p>from <a href="https://forum.xda-developers.com/nexus-4/general/guide-increase-nexus-4s-partition-space-t3800264" target="_blank" rel="noopener">XDA</a></p>
+</blockquote>
+<p>I got tired of installing amazing ROMs created by the talented folks here on XDA, but being held back on things like Google Apps because of the tiny /system partition we have on the Nexus 4. I looked around and found guides to increase the system space in the Nexus 5 and Nexus 7 2013, so I basically just adapted them to work on our beloved Nexus 4.</p>
+<blockquote>
+<p>As always, do this at your OWN risk. I am not responsible for bricking your Nexus 4. I will simply list the process which I used to increase my Nexus 4’s system partition (by taking a big ol’ chunk from the cache partition). Remember, any sort of modification to your device of this caliber WILL void any warranty you might still have.</p>
+</blockquote>
+<h4 id="REQUIREMENTS"><a href="#REQUIREMENTS" class="headerlink" title="REQUIREMENTS:"></a>REQUIREMENTS:</h4><p>parted (Uploaded to <a href="https://drive.google.com/open?id=15uhtjeH2Z4DQywbRafrJs5cw7rmhnRG_" target="_blank" rel="noopener">my Google Drive</a>. If it downloads as a .txt, rename it to remove the extension and make it a plain file)<br>adb and fastboot, and preferably knowledge on how they work</p>
+<ul>
+<li><p>Step 1: Install TWRP onto your Nexus 4 and reboot into it.</p>
+</li>
+<li><p>Step 2: Open up command prompt / terminal and check to see if your Nexus 4 is connected properly with “adb devices”.</p>
+</li>
+<li><p>Step 3: Once you’ve confirmed that adb is fully working and your Nexus 4 is properly connected to your PC, download parted and use adb to push it to your Nexus 4 using the command:</p>
+<blockquote>
+<p>adb push parted /</p>
+</blockquote>
+</li>
+<li><p>Step 4: Now enter the following command:</p>
+<blockquote>
+<p>adb shell</p>
+</blockquote>
+<p>and then the command:</p>
+<blockquote>
+<p>chmod +x parted</p>
+</blockquote>
+<p>This will enter adb shell and make the “parted” binary you pushed to your device earlier executable.</p>
+</li>
+<li><p>Step 5:<br>Now run the command</p>
+<blockquote>
+<p>./parted /dev/block/mmcblk0 p</p>
+</blockquote>
+<p>You should see a long list with a bunch of numbers and names in your terminal. These are the partitions on your device. parted will give you the partition number, the “start” and “end” of the partition, the size, and the name.<br>This is the partition layout on my device. It will probably be the same on your device, though the size of userdata may vary depending on whether you have the 8gb or 16gb Nexus 4.</p>
+<blockquote>
+<p>~ # ./parted /dev/block/mmcblk0 p<br>  Model: MMC 016G92 (sd/mmc)<br>  Disk /dev/block/mmcblk0: 15.8GB<br>  Sector size (logical/physical): 512B/512B<br>  Partition Table: gpt</p>
+<p>  Number  Start   End     Size    File system  Name      Flags<br>   1      524kB   67.6MB  67.1MB  fat16        modem<br>   2      67.6MB  68.2MB  524kB                sbl1<br>   3      68.2MB  68.7MB  524kB                sbl2<br>   4      68.7MB  70.8MB  2097kB               sbl3<br>   5      70.8MB  71.3MB  524kB                tz<br>   6      71.3MB  94.4MB  23.1MB               boot<br>   7      94.4MB  117MB   23.1MB               recovery<br>   8      117MB   118MB   799kB                m9kefs1<br>   9      118MB   119MB   799kB                m9kefs2<br>  10      119MB   120MB   799kB                m9kefs3<br>  11      120MB   121MB   524kB                rpm<br>  12      121MB   121MB   524kB                aboot<br>  13      121MB   122MB   524kB                sbl2b<br>  14      122MB   124MB   2097kB               sbl3b<br>  15      124MB   124MB   524kB                abootb<br>  16      124MB   125MB   524kB                rpmb<br>  17      125MB   125MB   524kB                tzb<br>  18      125MB   126MB   524kB                metadata<br>  19      126MB   143MB   16.8MB               misc<br>  20      143MB   159MB   16.8MB  ext4         persist<br>  21      159MB   1040MB  881MB   ext2         system<br>  22      1040MB  1627MB  587MB   ext4         cache<br>  23      1627MB  15.8GB  14.1GB  ext4         userdata<br>  24      15.8GB  15.8GB  524kB                DDR<br>  25      15.8GB  15.8GB  507kB                grow</p>
+</blockquote>
+</li>
+<li><p>Step 6: Now run the following three commands:</p>
+<blockquote>
+<p>umount /data<br>umount /sdcard<br>umount /cache</p>
+</blockquote>
+</li>
+<li><p>Step 7: So, on my Nexus 4, the system partition is number 21, and cache is 22. We’re kinda lucky in the fact that system and cache are right next to each other, meaning we don’t have to touch any other partition.<br>You&#39;ll want to run these two next commands. These commands will essentially “remove” the two partitions.</p>
+<blockquote>
+<p>./parted /dev/block/mmcblk0 rm 21<br>./parted /dev/block/mmcblk0 rm 22</p>
+</blockquote>
+</li>
+<li><p>Step 8: Now it is time to recreate these two partitions, however, when recreating them, we will make system bigger and the cache smaller. From the partitions list we got in Step 5, we can see that system starts at 159 and ends at 1040, while cache starts at 1040 and ends at 1627. The following two commands will rebuild /system starting at 159, but ending at 1590, while rebuilding cache at 1590, and ending at 1627. We are essentially stealing a large chunk from cache, since we don&#39;t really need that anymore on newer ROMs.</p>
+<blockquote>
+<p>./parted /dev/block/mmcblk0 mkpart primary 159 1590<br>./parted /dev/block/mmcblk0 mkpart primary 1590 1627</p>
+</blockquote>
+</li>
+<li><p>Step 9: Now run this command:</p>
+<blockquote>
+<p>./parted /dev/block/mmcblk0 p</p>
+</blockquote>
+<p>This will bring up the partitions list, or table, again. This time, however, we&#39;ll see the new partitions where system and cache were, however, they have no names! The following two commands will name the two partitions again.</p>
+<blockquote>
+<p>./parted /dev/block/mmcblk0 name 21 system<br>./parted /dev/block/mmcblk0 name 22 cache</p>
+</blockquote>
+</li>
+<li><p>Step 10: Great! Now the partitions should be named again! Now, we still have to format the partitions as ext4 so that we can actually use them. The following two commands will do that for you.</p>
+<blockquote>
+<p>mke2fs -b 4096 -T ext4 /dev/block/mmcblk0p21<br>mke2fs -b 4096 -T ext4 /dev/block/mmcblk0p22</p>
+</blockquote>
+</li>
+<li><p>Step 11: At this point, feel free to run the command from Step 5 to take one more look at the partition table and make sure everything looks good. Now run the command</p>
+<blockquote>
+<p>mount -a</p>
+</blockquote>
+<p>and then type in</p>
+<blockquote>
+<p>exit</p>
+</blockquote>
+</li>
+<li><p>Step 12: Now we are pretty much done. We&#39;ve extended the system partition from approx. 881mb to 1431mb, which is a nice large chunk of memory. In the future, we could always mess with the partitions more to add even more space by stealing from userdata, but until we reach that point, I think we are pretty well set for now!</p>
+</li>
+</ul>
+<p>Now…<br>You&#39;ll want to reboot TWRP, and flash a new ROM. You can now use a much bigger Google Apps package, without any worries.<br>Do note, however, that flashing a ROM will “resize” system to be smaller, but this isn’t a huge deal. After flashing a ROM, while still in TWRP, you’ll want to go to Wipe &gt; Advanced Wipe &gt; check “system” then head to “Repair or Change File System”, &gt; then tap on “Resize File System.” If you encounter any errors while trying to resize, try remounting system or rebooting TWRP. Afterwards, you should be able to flash your Google Apps package. I’m not sure if you need to repeat these steps after flashing things other than ROMs, but repeating this process within TWRP should work just as well.</p>
+<p>I hope I helped y’all out and feel free to post if this guide worked for you or if you have any other comments!</p>
+<p>CREDITS:<br>@surfrock66 for his Nexus 5 guide <a href="https://forum.xda-developers.com/google-nexus-5/general/guide-repartition-nexus5-to-increase-t3509880" target="_blank" rel="noopener">here</a>.<br>@rkhat for his Nexus 7 2013 guide <a href="https://forum.xda-developers.com/nexus-7-2013/general/guide-repartition-nexus72013-to-t3599907" target="_blank" rel="noopener">here</a>.</p>
+<p><a href="./parted">Download parted</a></p>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/codenote/tags/Android/" rel="tag"># Android</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/codenote/tags/recovery/" rel="tag"># recovery</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/codenote/tags/Nexus4/" rel="tag"># Nexus4</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/codenote/tags/%E5%88%B7%E6%9C%BA/" rel="tag"># 刷机</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/codenote/tags/XDA/" rel="tag"># XDA</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="查看 Apk 文件信息" href="/codenote/Android/2019/check_apk_info/">
+            ← 查看 Apk 文件信息
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="Factory Images for Nexus and Pixel Devices" href="/codenote/Android/Flash-ROM/2019/copy/factory_images_for_nexus_and_pixel_devices/">
+            Factory Images for Nexus and Pixel Devices →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#REQUIREMENTS"><span class="toc-text">REQUIREMENTS:</span></a></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Code Notebook &mdash;</small>
+    <h3 class="read-next-card-header-title">最新文章</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/codenote/dev/bash/2021/My-alias-configs/">My alias configs</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/codenote/iOS/2019/Adding-Xcode-build-configueration/">给 Xcode 项目增加多种 build</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/codenote/Android/2019/copy/apk-stronging-up/">浅谈安卓apk加固原理和实现</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/codenote/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">分类</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/Android/Flash-ROM/">Flash ROM</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/dev/">dev</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/dev/bash/">bash</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/iOS/">iOS</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">标签云</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/codenote/tags/Android/" style="font-size: 24px;">Android</a> <a href="/codenote/tags/Android-ROM/" style="font-size: 14px;">Android ROM</a> <a href="/codenote/tags/App-Icon/" style="font-size: 14px;">App Icon</a> <a href="/codenote/tags/Build/" style="font-size: 14px;">Build</a> <a href="/codenote/tags/Factory-Image/" style="font-size: 14px;">Factory Image</a> <a href="/codenote/tags/Google/" style="font-size: 14px;">Google</a> <a href="/codenote/tags/Nexus/" style="font-size: 14px;">Nexus</a> <a href="/codenote/tags/Nexus4/" style="font-size: 14px;">Nexus4</a> <a href="/codenote/tags/Pixel/" style="font-size: 14px;">Pixel</a> <a href="/codenote/tags/PlistBuddy/" style="font-size: 14px;">PlistBuddy</a> <a href="/codenote/tags/PreRelease/" style="font-size: 14px;">PreRelease</a> <a href="/codenote/tags/XDA/" style="font-size: 14px;">XDA</a> <a href="/codenote/tags/Xcode/" style="font-size: 14px;">Xcode</a> <a href="/codenote/tags/aapt/" style="font-size: 14px;">aapt</a> <a href="/codenote/tags/apk/" style="font-size: 19px;">apk</a> <a href="/codenote/tags/apksigner/" style="font-size: 14px;">apksigner</a> <a href="/codenote/tags/apktool/" style="font-size: 14px;">apktool</a> <a href="/codenote/tags/apk%E5%8A%A0%E5%9B%BA/" style="font-size: 14px;">apk加固</a> <a href="/codenote/tags/bash/" style="font-size: 14px;">bash</a> <a href="/codenote/tags/hexo/" style="font-size: 14px;">hexo</a> <a href="/codenote/tags/imagemagick/" style="font-size: 14px;">imagemagick</a> <a href="/codenote/tags/recovery/" style="font-size: 14px;">recovery</a> <a href="/codenote/tags/%E5%88%B7%E6%9C%BA/" style="font-size: 19px;">刷机</a> <a href="/codenote/tags/%E7%AD%BE%E5%90%8D/" style="font-size: 14px;">签名</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="https://i.loli.net/2017/11/26/5a19c0b50432e.png" alt="Code Notebook">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="搜索 ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/codenote/" title="Code Notebook">Code Notebook &copy; 2021</a>
+			
+				
+			        <span hidden="true" id="/codenote/Android/Flash-ROM/2019/copy/increse_rom_partition_size/" class="leancloud-visitors" data-flag-title="[GUIDE] Increase your Nexus 4 s system partition for more space!">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/codenote/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/codenote/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/codenote/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/codenote/photoswipe/default-skin/default-skin.css">
+<script src="/codenote/photoswipe/photoswipe.min.js"></script>
+<script src="/codenote/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: 'B0rlNNVTefUvDwjgmvOcvxJl-gzGzoHsz',
+            appKey: 'ixDdPojgAU5ut98M3eNsgBRI',
+            placeholder: 'Say something',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

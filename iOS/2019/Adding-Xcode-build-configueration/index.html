@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>给 Xcode 项目增加多种 build | Code Notebook</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="Bill">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="https://i.loli.net/2017/11/26/5a19c0b50432e.png">
+	<link rel="apple-touch-icon" href="https://i.loli.net/2017/11/26/5a19c0b50432e.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Code Notebook">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="给 Xcode 项目增加多种 build | Code Notebook">
+	<meta property="og:description" content>
+	<meta property="og:url" content="http://dubiao.github.io/codenote/codenote/iOS/2019/Adding-Xcode-build-configueration/">
+
+	
+	<meta property="article:published_time" content="2019-10-30T11:10:00+08:00"> 
+	<meta property="article:author" content="Bill">
+	<meta property="article:published_first" content="Code Notebook, /codenote/iOS/2019/Adding-Xcode-build-configueration/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/codenote/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                <a href="/codenote/" title="Home">HOME</a>
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/dubiao" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com/link_biao" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="telegram" href="https://t.me/link_biao" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M679.428571 746.857143l84-396q5.142857-25.142857-6-36t-29.428571-4L234.285714 501.142857q-16.571429 6.285714-22.571428 14.285714t-1.428572 15.142858 18.285715 11.142857l126.285714 39.428571 293.142857-184.571428q12-8 18.285714-3.428572 4 2.857143-2.285714 8.571429l-237.142857 214.285714-9.142857 130.285714q13.142857 0 25.714285-12.571428l61.714286-59.428572 128 94.285715q36.571429 20.571429 46.285714-21.714286z m344.571429-234.857143q0 104-40.571429 198.857143t-109.142857 163.428571-163.428571 109.142857-198.857143 40.571429-198.857143-40.571429-163.428571-109.142857-109.142857-163.428571T0 512t40.571429-198.857143 109.142857-163.428571T313.142857 40.571429 512 0t198.857143 40.571429 163.428571 109.142857 109.142857 163.428571 40.571429 198.857143z"/></svg>
+    </a>
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-10-30T03:56:53.000Z">
+                    2019-10-30
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/codenote/categories/iOS/">iOS</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">给 Xcode 项目增加多种 build</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h2 id="Build-Configuration"><a href="#Build-Configuration" class="headerlink" title="Build Configuration"></a>Build Configuration</h2><p>Xcode 默认有 <strong>Debug</strong> 和 <strong>Release</strong> 两种 build 模式。<br>可以通过增加不同的 Build config 来打不同的包，以应对测试和预发布需求。</p>
+<p>在 Project 的 info 里 Configuration 下点击加号 复制一个已有的 build config</p>
+<p><img alt class="post-img b-lazy" data-img="883390AD-A3F5-4C12-8065-8FFD5C625C5E.png" data-index="0" data-src="883390AD-A3F5-4C12-8065-8FFD5C625C5E.png"></p>
+<p>然后后 <strong>Build Settings</strong> 里的 <strong>Preprocessor Macros</strong> 下，为不同的 build 增加几个不同的变量，名称和数据可以自己定义（不能是0或NO之类表示否定的常量，具体哪几个有问题我也没试过）。</p>
+<p><img alt class="post-img b-lazy" data-img="4B6B648E-3E4A-469A-A5C6-2E8428414693.png" data-index="1" data-src="4B6B648E-3E4A-469A-A5C6-2E8428414693.png"></p>
+<h3 id="不同变量"><a href="#不同变量" class="headerlink" title="不同变量"></a>不同变量</h3><p>在程序里一个 OC 文件里定义对应 Build 使用的不同变量，比如不同的服务器等：</p>
+<figure class="highlight plain"><figcaption><span>C</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#ifdef DEBUG</span><br><span class="line">#define kHost @&quot;https://test.company.io&quot;</span><br><span class="line">#elif PRERELEASE</span><br><span class="line">#define kHost @&quot;https://staging.company.io&quot;</span><br><span class="line">#else</span><br><span class="line">#define kHost @&quot;https://production.company.io&quot;</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+
+<p>这样编译出来的代码就会按不同的 build 类型使用不同的变量。<br><em>运行程序前要修改 Scheme下使用相应的 build 类型</em> ，再运行（或 Archive）</p>
+<blockquote>
+<p>实际上，也可以直接在 Macros 相应的 value 里加上其它变量，直接定义变量值（一行一个）。但是这样不够友好，一般更希望在代码中看到使用的变量的相应值，而不是在一个“配置”里看到。  </p>
+</blockquote>
+<blockquote>
+<p><strong>注意</strong>：在增加 Configuration 后，如果有 <strong>Pod</strong> 依赖，还要再运行一次 <code>pod install</code> ，否则会报错。<br><code>pod install</code> 会按照主项目的配置也生成各种 Configuration 的配置。  </p>
+</blockquote>
+<h3 id="不同图标-AppIcon"><a href="#不同图标-AppIcon" class="headerlink" title="不同图标 AppIcon"></a>不同图标 AppIcon</h3><p>假设在 <strong>Images.xcassets</strong> 里有 <strong>AppIcon</strong>、<strong>AppIconDebug</strong>、<strong>AppIconPre</strong> 三个资源。分别是正式的图标和在图标上加上 debug 和 prerelease 标记的图标，方便使用者知道 app 类型。<br>在 <strong>Target</strong> 的 <strong>Build Settings</strong> 下的 <strong>Asset Catalog App Icon Set Name</strong> 中，为不同的 build 类型使用不同的 AppIcon 资源名称：<br><img alt class="post-img b-lazy" data-img="7B7A85EE-FA80-4DCC-9C01-618D54ABE464.png" data-index="2" data-src="7B7A85EE-FA80-4DCC-9C01-618D54ABE464.png"></p>
+<h3 id="不同-App-名称"><a href="#不同-App-名称" class="headerlink" title="不同 App 名称"></a>不同 App 名称</h3><p>在 Build Settings 下，点+号：<br><img alt class="post-img b-lazy" data-img="061786A9-D0A8-4705-9424-1FFB295D4CB6.png" data-index="3" data-src="061786A9-D0A8-4705-9424-1FFB295D4CB6.png"></p>
+<p>Add User-Defined Setting<br>我们可以定义一个要增加的变量的 KEY，比如：<br>APP_DISPLAY_NAME<br>然后在不同的 build 类型下，使用不同的名称。<br><img alt class="post-img b-lazy" data-img="3D976329-BCBD-4395-8599-0534FE9CA480.png" data-index="4" data-src="3D976329-BCBD-4395-8599-0534FE9CA480.png"></p>
+<p>其中可以引用 $(PRODUCT_NAME) 来使用产品的名称。</p>
+<p>然后在 Info 里的 Bundle display name 的 value 改为 <code>$(APP_DISPLAY_NAME)</code>就可以在不同 build 下生成显示不同的 app 名称。</p>
+<h4 id="（课外）App-名称的多语言"><a href="#（课外）App-名称的多语言" class="headerlink" title="（课外）App 名称的多语言"></a>（课外）App 名称的多语言</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">本节与 Configuration 无关，就是想到了直接写一段。</span><br></pre></td></tr></table></figure>
+
+<p>有时候要让 app 在多语言下显示不同的名称</p>
+<ol>
+<li>在Info.plist 里增加一个key 为 <code>Application has localized display name</code> 的属性，类型是 <strong>Boolean</strong>， value 是 <strong>YES</strong></li>
+<li>在工程里创建一个空文件 名称为 <strong>InfoPlist.strings</strong></li>
+<li>在  Project 的  Localization 里增加需要的不同的语言(如果已经增加过其它语言就不用了)</li>
+<li>然后选中 InfoPlist.strings 文件，在d右边属性检查器里勾选所有的语言，然后生成对应不同语言的子文件，在文件中增加形如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;CFBundleDisplayName&quot; = &quot;App Name&quot;;</span><br></pre></td></tr></table></figure>
+的行，来设置不同语言。格式与字符串的多语言是一样的。</li>
+</ol>
+<p><a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AboutInformationPropertyListFiles.html" target="_blank" rel="noopener">苹果关于 InfoPlist.strings 的文档</a>建议一般至少增加这几个 key</p>
+<ul>
+<li><a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-110725" target="_blank" rel="noopener">CFBundleDisplayName</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/TP40009249-109585" target="_blank" rel="noopener">CFBundleName</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-111349" target="_blank" rel="noopener">CFBundleShortVersionString</a>  （我不建议加这个）</li>
+<li><a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-112854-TPXREF117" target="_blank" rel="noopener">NSHumanReadableCopyright</a> （这个不怎么用……）</li>
+</ul>
+<h2 id="通过脚本修改配置-Info-plist"><a href="#通过脚本修改配置-Info-plist" class="headerlink" title="通过脚本修改配置 (Info.plist)"></a>通过脚本修改配置 (Info.plist)</h2><blockquote>
+<p>重点。  </p>
+</blockquote>
+<p>Xcode 的编译可以在编译前后插入各种脚本，这样就可以在运行编译时执行一任何事情，比如给老婆打个电话。<br>RN 和 Pods 等优秀框架，就是在这里（Build Phases）做了很多事情，帮你做了很多工作，才使得你使用这些优秀框架的体验大大提升。</p>
+<h3 id="1-创建脚本-Phase"><a href="#1-创建脚本-Phase" class="headerlink" title="1. 创建脚本 Phase"></a>1. 创建脚本 Phase</h3><p>在 <strong>Target</strong> 的 <strong>Build Phases</strong> 下，点击 <code>+</code> 号创建一个 <strong>Run Script</strong> 的 Phase。会在 Build Phases 页面的下面多出一个 Run Script 的扩展。点开查看。<br>Shell 框中的<code>/bin/sh</code>代表使用 Shell 来执行下面的代码。也可以自己定义为 <strong>python</strong> 等。<br><img alt class="post-img b-lazy" data-img="C9578E51-0D9B-4315-9A2A-F04B2748930A.png" data-index="5" data-src="C9578E51-0D9B-4315-9A2A-F04B2748930A.png"></p>
+<p>在 Shell 框的后面加上 <code>-e</code> 参数 代表 脚本如果发生错误了就中止编译<br>比如 <code>/bin/sh -e</code></p>
+<p>在下面的输入框里输入要执行的代码，之后在编译时就会按照这里所有 Phases 的顺序一个个执行。</p>
+<p>我个人建议为了方便修改代码和版本管理，把要执行的代码放入一个.sh 文件，然后在代码框里输入：<code>sh thefile.sh</code>  这样更方便。<br>但如果是比如与项目编译很耦合的操作 或者是很简单的代码，放这里更好。比如 <strong>Pod</strong> 和 <strong>RN</strong> 都是直接在里写的。  </p>
+<h3 id="2-脚本改变内容"><a href="#2-脚本改变内容" class="headerlink" title="2. 脚本改变内容"></a>2. 脚本改变内容</h3><p>脚本中修改配置其实就是在 shell 脚本里通过命令修改 Info.plist 来达到不同 build 有不同变量的效果。<br>修改 plist 文件使用一个叫 PlistBuddy 的命令，一般不在环境变量里，使用方法：</p>
+<ol>
+<li>输出一个 key 的 value：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleShortVersionString"</span> pathto/Info.plist</span><br></pre></td></tr></table></figure></li>
+<li>设置一个 key 的 value：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/libexec/PlistBuddy -c <span class="string">"Set :CFBundleVersion 123_test"</span> pathto/Info.plist</span><br></pre></td></tr></table></figure></li>
+<li>增加一个 key ：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/libexec/PlistBuddy -c <span class="string">"Add :MyBuildVersion 123_test"</span> pathto/Info.plist</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>对于没有的 Key，无法直接<code>Set</code>,而是要 <code>Add</code>   </p>
+</blockquote>
+</li>
+</ol>
+<p>一般对文件的修改不在源代码的 Info 里改，要不然改完之后，可能一些动态的变化会进入版本控制库里，使别人困惑。<br>以下是两个重要变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">srcPlist=<span class="string">"<span class="variable">$&#123;SRCROOT&#125;</span>/IoT/Info.plist"</span></span><br><span class="line">buildPlist=<span class="string">"<span class="variable">$&#123;CONFIGURATION_BUILD_DIR&#125;</span>/<span class="variable">$&#123;INFOPLIST_PATH&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<p>srcPlist 代表源代码里的 Info 文件。<br>buildPlist 代表编译后（中） 的 Info 文件。<br>对于<strong>读取</strong>一般从 <strong>srcPlist</strong> 里读取，而<strong>修改</strong>则对 <strong>buildPlist</strong> 的文件做修改。</p>
+<p>还有一个变量是 <code>$CONFIGURATION</code>，代表当时编译的类型（Configuration）。</p>
+<h3 id="举例子"><a href="#举例子" class="headerlink" title="举例子"></a>举例子</h3><blockquote>
+<p>编译的需求是，对于 prerelease 的 build，给版本号里加个日期：  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">srcPlist=<span class="string">"<span class="variable">$&#123;SRCROOT&#125;</span>/IoT/Info.plist"</span></span><br><span class="line">buildPlist=<span class="string">"<span class="variable">$&#123;CONFIGURATION_BUILD_DIR&#125;</span>/<span class="variable">$&#123;INFOPLIST_PATH&#125;</span>"</span>  </span><br><span class="line"></span><br><span class="line">version=`/usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleShortVersionString"</span> <span class="string">"<span class="variable">$&#123;srcPlist&#125;</span>"</span>`</span><br><span class="line">build_num=`/usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleVersion"</span> <span class="string">"<span class="variable">$&#123;srcPlist&#125;</span>"</span>`</span><br><span class="line">now=`date +%m%d%H`</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$CONFIGURATION</span>"</span> = <span class="string">"PreRelease"</span> ]; <span class="keyword">then</span></span><br><span class="line">     /usr/libexec/PlistBuddy -c <span class="string">"Set :CFBundleVersion <span class="variable">$&#123;build_num&#125;</span>_<span class="variable">$&#123;now&#125;</span>"</span> <span class="string">"<span class="variable">$&#123;buildPlist&#125;</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong>：这个Script Phase 要在最后运行，否则会有可能找不到 build 里的 那个 Info 文件。<br>在 Build Phases 界面里长按这个 Phase 就可以拖动执行顺序。  </p>
+</blockquote>
+<h2 id="通过脚本改图标（Pro-版本）"><a href="#通过脚本改图标（Pro-版本）" class="headerlink" title="通过脚本改图标（Pro 版本）"></a>通过脚本改图标（Pro 版本）</h2><p>上面说通过 Build Configuration 就可以改编译出 app 的图标。那个是基础版本，一般的需求到那里就可以了。<br>但还有一种高阶需求，每次打出来的包图标上都显示上编译的时间或是版本号。这种需求一般在自动化编译或编译很频繁的情况下使用，为了使用者（测试者）很方便地知道当前的版本。</p>
+<p><img alt class="post-img b-lazy" data-img="71FEA60D-F429-432B-A6AC-31B3407DCBFC.png" data-index="6" data-src="71FEA60D-F429-432B-A6AC-31B3407DCBFC.png"><br><img alt class="post-img b-lazy" data-img="(null)" data-index="7" data-src="(null)"></p>
+<blockquote>
+<p>我一般不这么做。一来因为编译的频率不高，二来是会增加编译时间，三来麻烦。可以通过在 Info.plist 里增加编译时间的配置，然后在代码里读取和显示出相应的值还达到区分版本的目的。  </p>
+</blockquote>
+<blockquote>
+<p>本节参考这篇 <a href="http://merowing.info/2013/03/overlaying-application-version-on-top-of-your-icon/" target="_blank" rel="noopener">blog</a> 和   <a href="https://github.com/krzysztofzablocki/IconOverlaying/blob/master/Scripts/iconVersioning.sh" target="_blank" rel="noopener">这段代码 iconVersioning.sh · GitHub</a>。还找到一个<a href="https://gist.github.com/borjabonail/5527929" target="_blank" rel="noopener">简单版本 Xcode auto-versioning and icon overlay · GitHub</a>。  </p>
+<p>我也找到两篇中文的详细说明：<a href="https://www.jianshu.com/p/93b6a3087f04" target="_blank" rel="noopener">iOS App图标版本化 - 简书</a> 和 <a href="https://www.jianshu.com/p/a37e114b7e66" target="_blank" rel="noopener">iOS APP图标版本化 - 简书</a>  </p>
+</blockquote>
+<p>以下是笔记和思路。需要复制代码的可以不用看下去了。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>查询编译的包使用了哪些图片做为图标</li>
+<li>一个个地把图片做一下相应的处理</li>
+</ol>
+<h3 id="查询图标信息"><a href="#查询图标信息" class="headerlink" title="查询图标信息"></a>查询图标信息</h3><p>有关于“查询”，可以执行以下代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleIcons:CFBundlePrimaryIcon:CFBundleIconFiles"</span> <span class="string">"<span class="variable">$&#123;CONFIGURATION_BUILD_DIR&#125;</span>/<span class="variable">$&#123;INFOPLIST_PATH&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+
+<p>如之前所说，后面那个参数代表着编译后（中）产物里 Info.plist 的位置。<br>这行代码会输出一个 array，形如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Array &#123;</span><br><span class="line">    AppIcon20x20</span><br><span class="line">    AppIcon29x29</span><br><span class="line">    AppIcon40x40</span><br><span class="line">    AppIcon57x57</span><br><span class="line">    AppIcon60x60</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里要注意，如果输出的 array 里的项目带有 png 后缀，那么指代的是精确地图片名称，那么直接处理文件就好；如果是项目不带后缀，则是使用的 xcode 多分辨率资源的引用方法，应该分别外理一个的多种图片名称。比如，对于上面的 AppIcon20×20, 应该处理：</p>
+<ul>
+<li>AppIcon20×20.png</li>
+<li>AppIcon20×<a href="mailto:20@2x.png" target="_blank" rel="noopener">20@2x.png</a></li>
+<li>AppIcon20×<a href="mailto:20@3x.png" target="_blank" rel="noopener">20@3x.png</a><br>其它图片也一样。</li>
+</ul>
+<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询 Info.plist 中的版本信息</span></span><br><span class="line">version=`/usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleShortVersionString"</span> <span class="string">"<span class="variable">$&#123;CONFIGURATION_BUILD_DIR&#125;</span>/<span class="variable">$&#123;INFOPLIST_PATH&#125;</span>"</span>`</span><br><span class="line">build_num=`/usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleVersion"</span> <span class="string">"<span class="variable">$&#123;CONFIGURATION_BUILD_DIR&#125;</span>/<span class="variable">$&#123;INFOPLIST_PATH&#125;</span>"</span>`</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询当前代码的 git hash</span></span><br><span class="line"><span class="comment"># Check if we are under a Git or Hg repo</span></span><br><span class="line"><span class="keyword">if</span> [ -d .git ] || git rev-parse --git-dir &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    commit=`git rev-parse --short HEAD`</span><br><span class="line">    branch=`git rev-parse --abbrev-ref HEAD`</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    commit=`hg identify -i`</span><br><span class="line">    branch=`hg identify -b`</span><br><span class="line"><span class="keyword">fi</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询使用的图标</span></span><br><span class="line">icon_count=`/usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleIcons:CFBundlePrimaryIcon:CFBundleIconFiles"</span> <span class="string">"<span class="variable">$&#123;CONFIGURATION_BUILD_DIR&#125;</span>/<span class="variable">$&#123;INFOPLIST_PATH&#125;</span>"</span> | wc -l`</span><br><span class="line">icon_count =$((<span class="variable">$&#123;icon_count&#125;</span> - 2))</span><br><span class="line"><span class="comment"># 这里之所以要减2，wc -l 是输出的行数。掐头去尾就是 -2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义处理图片的方法</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">processIcon</span></span>() &#123;</span><br><span class="line">  theIconFile=<span class="variable">$1</span></span><br><span class="line">	<span class="comment">#....</span></span><br><span class="line">  <span class="comment">#具体代码省略</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一个个地处理图片</span></span><br><span class="line">i=0</span><br><span class="line"><span class="keyword">while</span> [  <span class="variable">$i</span> -lt <span class="variable">$last_icon_index</span> ]; <span class="keyword">do</span></span><br><span class="line">  icon=`/usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleIcons:CFBundlePrimaryIcon:CFBundleIconFiles:<span class="variable">$i</span>"</span> <span class="string">"<span class="variable">$&#123;CONFIGURATION_BUILD_DIR&#125;</span>/<span class="variable">$&#123;INFOPLIST_PATH&#125;</span>"</span>`</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> [[ <span class="variable">$icon</span> == *.png ]] || [[ <span class="variable">$icon</span> == *.PNG ]]</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    processIcon <span class="variable">$icon</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    processIcon <span class="string">"<span class="variable">$&#123;icon&#125;</span>.png"</span></span><br><span class="line">    processIcon <span class="string">"<span class="variable">$&#123;icon&#125;</span>@2x.png"</span></span><br><span class="line">    processIcon <span class="string">"<span class="variable">$&#123;icon&#125;</span>@3x.png"</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">  <span class="built_in">let</span> i=i+1</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>这里虽然是伪代码，但是大部分代码都是可以执行的。现在只要补充上<code>processIcon</code>处理图片的具体方法就可以了。<br>之所以提供伪代码，是因为这个东西不是我自己写的，而是使用了网上某位大神的作品。大家可以使用此代码更新版本。</p>
+<h3 id="图片处理"><a href="#图片处理" class="headerlink" title="图片处理"></a>图片处理</h3><p>图片处理一般用到两个脚本：ImageMagick(convert) 和 ghostscript(gs).<br>可以用<code>brew</code>安装两个脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install imagemagick</span><br><span class="line">brew install ghostscript</span><br></pre></td></tr></table></figure>
+<p>让我们环境不相关地了解一下如何使用</p>
+<ol>
+<li><p>找一张图片，放到<code>~/test_image/</code>下<br><img alt class="post-img b-lazy" data-img="B93B2DAF-8ADA-492A-B54F-C8B5470BECDF.png" data-index="8" data-src="B93B2DAF-8ADA-492A-B54F-C8B5470BECDF.png"></p>
+</li>
+<li><p>从终端 cd 到这个目录，执行这段代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">convert -background <span class="string">'#0008'</span>\</span><br><span class="line">        -fill white\</span><br><span class="line">        -size 303x100\</span><br><span class="line">        -gravity center\</span><br><span class="line">        caption:<span class="string">"only one truth"</span>\</span><br><span class="line">        conan.png +swap\</span><br><span class="line">        -gravity south\</span><br><span class="line">        -composite conan_one.png</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>然后目录下就会生成这张图片了：</p>
+<p><img alt class="post-img b-lazy" data-img="DCD74AA9-5C57-4617-AE3A-A0A6032D2A66.png" data-index="9" data-src="DCD74AA9-5C57-4617-AE3A-A0A6032D2A66.png"></p>
+<p>通过命令的参数和生成的图片我们大可以猜猜每个参数的意思：</p>
+<ul>
+<li>background 背景颜色</li>
+<li>fill 文字填充色</li>
+<li>gravity 叠加图片的位置</li>
+<li>size 叠加图片的大小</li>
+<li>caption 文字<br>其它几个看不懂<br>但我们可以通过尝试去掉或换掉之，再配合 <code>--help</code>  来了解其意思。</li>
+<li>composite 代表把两个图片叠加后输出到新文件，如果换成 -append 就把叠加层的半透明效果去掉。<br>对于 swap</li>
+<li>+swap 好像是交换 两个图的顺序<br>去掉这个参数后，会把原图片放到叠加层前面<br>但也会导致这个结果的图片按叠加层的大小切割<br>我也不知道怎么把切割再变大</li>
+</ul>
+<p>另外有几个地方要注意：</p>
+<ul>
+<li>有两个 gravity<ul>
+<li>第一个 gravity 代表里面的文字要怎么放。</li>
+<li>第二个 gravity 代表这个叠加要放到整个图片的哪个位置。</li>
+</ul>
+</li>
+<li>caption<ul>
+<li>加文字的格式是 <code>caption:&quot;文字&quot;</code></li>
+<li>不支持中文</li>
+</ul>
+</li>
+</ul>
+<p>应该是这个好工具，但我不会用。</p>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/codenote/tags/Xcode/" rel="tag"># Xcode</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/codenote/tags/Build/" rel="tag"># Build</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/codenote/tags/App-Icon/" rel="tag"># App Icon</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/codenote/tags/PreRelease/" rel="tag"># PreRelease</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/codenote/tags/imagemagick/" rel="tag"># imagemagick</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/codenote/tags/PlistBuddy/" rel="tag"># PlistBuddy</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="My alias configs" href="/codenote/dev/bash/2021/My-alias-configs/">
+            ← My alias configs
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="浅谈安卓apk加固原理和实现" href="/codenote/Android/2019/copy/apk-stronging-up/">
+            浅谈安卓apk加固原理和实现 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Build-Configuration"><span class="toc-text">Build Configuration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不同变量"><span class="toc-text">不同变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不同图标-AppIcon"><span class="toc-text">不同图标 AppIcon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不同-App-名称"><span class="toc-text">不同 App 名称</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#（课外）App-名称的多语言"><span class="toc-text">（课外）App 名称的多语言</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过脚本修改配置-Info-plist"><span class="toc-text">通过脚本修改配置 (Info.plist)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建脚本-Phase"><span class="toc-text">1. 创建脚本 Phase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-脚本改变内容"><span class="toc-text">2. 脚本改变内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#举例子"><span class="toc-text">举例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过脚本改图标（Pro-版本）"><span class="toc-text">通过脚本改图标（Pro 版本）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询图标信息"><span class="toc-text">查询图标信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪代码"><span class="toc-text">伪代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图片处理"><span class="toc-text">图片处理</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Code Notebook &mdash;</small>
+    <h3 class="read-next-card-header-title">最新文章</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/codenote/dev/bash/2021/My-alias-configs/">My alias configs</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/codenote/iOS/2019/Adding-Xcode-build-configueration/">给 Xcode 项目增加多种 build</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/codenote/Android/2019/copy/apk-stronging-up/">浅谈安卓apk加固原理和实现</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/codenote/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">分类</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/Android/Flash-ROM/">Flash ROM</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/dev/">dev</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/dev/bash/">bash</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/iOS/">iOS</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">标签云</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/codenote/tags/Android/" style="font-size: 24px;">Android</a> <a href="/codenote/tags/Android-ROM/" style="font-size: 14px;">Android ROM</a> <a href="/codenote/tags/App-Icon/" style="font-size: 14px;">App Icon</a> <a href="/codenote/tags/Build/" style="font-size: 14px;">Build</a> <a href="/codenote/tags/Factory-Image/" style="font-size: 14px;">Factory Image</a> <a href="/codenote/tags/Google/" style="font-size: 14px;">Google</a> <a href="/codenote/tags/Nexus/" style="font-size: 14px;">Nexus</a> <a href="/codenote/tags/Nexus4/" style="font-size: 14px;">Nexus4</a> <a href="/codenote/tags/Pixel/" style="font-size: 14px;">Pixel</a> <a href="/codenote/tags/PlistBuddy/" style="font-size: 14px;">PlistBuddy</a> <a href="/codenote/tags/PreRelease/" style="font-size: 14px;">PreRelease</a> <a href="/codenote/tags/XDA/" style="font-size: 14px;">XDA</a> <a href="/codenote/tags/Xcode/" style="font-size: 14px;">Xcode</a> <a href="/codenote/tags/aapt/" style="font-size: 14px;">aapt</a> <a href="/codenote/tags/apk/" style="font-size: 19px;">apk</a> <a href="/codenote/tags/apksigner/" style="font-size: 14px;">apksigner</a> <a href="/codenote/tags/apktool/" style="font-size: 14px;">apktool</a> <a href="/codenote/tags/apk%E5%8A%A0%E5%9B%BA/" style="font-size: 14px;">apk加固</a> <a href="/codenote/tags/bash/" style="font-size: 14px;">bash</a> <a href="/codenote/tags/hexo/" style="font-size: 14px;">hexo</a> <a href="/codenote/tags/imagemagick/" style="font-size: 14px;">imagemagick</a> <a href="/codenote/tags/recovery/" style="font-size: 14px;">recovery</a> <a href="/codenote/tags/%E5%88%B7%E6%9C%BA/" style="font-size: 19px;">刷机</a> <a href="/codenote/tags/%E7%AD%BE%E5%90%8D/" style="font-size: 14px;">签名</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="https://i.loli.net/2017/11/26/5a19c0b50432e.png" alt="Code Notebook">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="搜索 ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/codenote/" title="Code Notebook">Code Notebook &copy; 2021</a>
+			
+				
+			        <span hidden="true" id="/codenote/iOS/2019/Adding-Xcode-build-configueration/" class="leancloud-visitors" data-flag-title="给 Xcode 项目增加多种 build">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/codenote/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/codenote/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/codenote/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/codenote/photoswipe/default-skin/default-skin.css">
+<script src="/codenote/photoswipe/photoswipe.min.js"></script>
+<script src="/codenote/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: 'B0rlNNVTefUvDwjgmvOcvxJl-gzGzoHsz',
+            appKey: 'ixDdPojgAU5ut98M3eNsgBRI',
+            placeholder: 'Say something',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

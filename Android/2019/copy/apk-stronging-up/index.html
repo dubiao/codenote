@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>浅谈安卓apk加固原理和实现 | Code Notebook</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="Bill">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="https://i.loli.net/2017/11/26/5a19c0b50432e.png">
+	<link rel="apple-touch-icon" href="https://i.loli.net/2017/11/26/5a19c0b50432e.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Code Notebook">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="浅谈安卓apk加固原理和实现 | Code Notebook">
+	<meta property="og:description" content>
+	<meta property="og:url" content="http://dubiao.github.io/codenote/codenote/Android/2019/copy/apk-stronging-up/">
+
+	
+	<meta property="article:published_time" content="2019-10-25T10:10:00+08:00"> 
+	<meta property="article:author" content="Bill">
+	<meta property="article:published_first" content="Code Notebook, /codenote/Android/2019/copy/apk-stronging-up/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/codenote/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                <a href="/codenote/" title="Home">HOME</a>
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/dubiao" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com/link_biao" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="telegram" href="https://t.me/link_biao" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M679.428571 746.857143l84-396q5.142857-25.142857-6-36t-29.428571-4L234.285714 501.142857q-16.571429 6.285714-22.571428 14.285714t-1.428572 15.142858 18.285715 11.142857l126.285714 39.428571 293.142857-184.571428q12-8 18.285714-3.428572 4 2.857143-2.285714 8.571429l-237.142857 214.285714-9.142857 130.285714q13.142857 0 25.714285-12.571428l61.714286-59.428572 128 94.285715q36.571429 20.571429 46.285714-21.714286z m344.571429-234.857143q0 104-40.571429 198.857143t-109.142857 163.428571-163.428571 109.142857-198.857143 40.571429-198.857143-40.571429-163.428571-109.142857-109.142857-163.428571T0 512t40.571429-198.857143 109.142857-163.428571T313.142857 40.571429 512 0t198.857143 40.571429 163.428571 109.142857 109.142857 163.428571 40.571429 198.857143z"/></svg>
+    </a>
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-10-25T02:36:16.000Z">
+                    2019-10-25
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/codenote/categories/Android/">Android</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">浅谈安卓apk加固原理和实现</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <blockquote>
+<p>from <a href="https://yq.aliyun.com/articles/675072" target="_blank" rel="noopener">云栖社区</a></p>
+</blockquote>
+<h2 id="引言："><a href="#引言：" class="headerlink" title="引言："></a>引言：</h2><p>在安卓开发中，打包发布是开发的最后一个环节，apk是整个项目的源码和资源的结合体；对于懂点反编译原理的人可以轻松编译出apk的源码资源，并且可以修改资源代码、重新打包编译，轻轻松松变成自己的apk或者修改其中一部分窃取用户信息。<br>代码被反编译对于apk的开发者和使用者而言十分苦恼。apk加固、防止反编译此时显得尤为重要。虽然有好多给apk加固的第三方，可能并不需要自己做apk加固，但是了解apk加固原理还是很有必要的。本文主要向大家介绍apk加固原理和简单实现。</p>
+<h2 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h2><p>一、apk常见加固方式<br>二、apk加固原理<br>三、apk加固实现<br>四、apk该方式加固后缺陷</p>
+<h2 id="一、apk常见加固方式"><a href="#一、apk常见加固方式" class="headerlink" title="一、apk常见加固方式"></a>一、apk常见加固方式</h2><h3 id="（1）代码层级加密–代码混淆"><a href="#（1）代码层级加密–代码混淆" class="headerlink" title="（1）代码层级加密–代码混淆"></a>（1）代码层级加密–代码混淆</h3><p>代码混淆是一种常用的加密方式。本质是把工程中原来的有具体含义的类名、变量名、方法名，修改成让人看不懂的名字。常见的代码混淆工具proguard（有兴趣的可以自己看一下该工具：<a href="http://t.cn/ELjgHdi" target="_blank" rel="noopener">http://t.cn/ELjgHdi</a> ）。该加密方式只是对工程提供了最小的保护，并不是说不能逆向破解；只是说难度增加，需要耐心。</p>
+<h3 id="（2）-Dex文件加密"><a href="#（2）-Dex文件加密" class="headerlink" title="（2） Dex文件加密"></a>（2） Dex文件加密</h3><p>dex是Android工程中的代码资源文件，通过dex可以反编译出java代码。dex的加壳是常见的加密方式。通过对dex文件加密拼接加壳，可以有效的对工程代码进行保护。apk工程在安装成功后，app启动时会有dex解密的过程，然后重新加载解密后的dex文件。<br>第二种加密方式也就是本文要为大家分享的加密方式。基本原理是在jni层， 使用DexClassLoader动态加载技术完成对加密classex.dex的动态加载，dex文件可以附属在assert或raw目录。</p>
+<h2 id="二、apk加固原理"><a href="#二、apk加固原理" class="headerlink" title="二、apk加固原理"></a>二、apk加固原理</h2><h3 id="1-apk文件结构"><a href="#1-apk文件结构" class="headerlink" title="(1) apk文件结构"></a>(1) apk文件结构</h3><p>解压一个apk包，可以看到如下目录结构：<br>assets：存放工程资源(图片、本地html等)文件的目录<br>Lib：存放ndk编译出来的so文件（so:C/C++编译出的文件）<br>META-INF：<br>该目录下存放的是签名信息，用来保证apk包的完整性和系统的安全性：<br>CERT.RSA：保存着该应用程序的证书和授权信息<br>CERT.SF：保存着SHA-1信息资源列表<br>MANIFEST.MF：清单信息<br>res：存放资源（布局xml、布局xml引用图片等）文件的目录<br>AndroidManifest.xml：清单文件，它描述了应用的名字、版本、权限、注册的服务等信息<br>classes.dex：java源码编译经过编译后生成的dalvik字节码文件，主要在Dalvik虚拟机上运行的主要代码部分<br>resources.arsc：编译后的二进制资源文件<br>META-INF文件主要是跟签名有关的文件，保证了apk的完整性和安全性。apk每次重新签名需要删除该文件夹。<br>需要大家主要关注的是classes.dex文件：因为apk加固主要是对dex文件进行的加密。</p>
+<h3 id="2-Dex文件结构"><a href="#2-Dex文件结构" class="headerlink" title="(2) Dex文件结构"></a>(2) Dex文件结构</h3><p><img alt class="post-img b-lazy" data-img="7bbdc476b9d01dc9d9d49eab594f2aff9a34e01d.jpeg" data-index="0" data-src="7bbdc476b9d01dc9d9d49eab594f2aff9a34e01d.jpeg"><br>dex文件可以理解为由java文件编译生产的，直观表现就是dex文件可以编译出java源码；<br>dex文件的作用是记录整个工程（通常是一个Android工程）的所有类文件的信息；<br>dex文件是从class文件演变而来的，class文件存在冗余信息，dex文件则去掉了冗余，并且整合了整个工程的类信息。<br><img alt class="post-img b-lazy" data-img="5ebb67010731b6c04e6d6d082cf69f1fb95009c4.jpeg" data-index="1" data-src="5ebb67010731b6c04e6d6d082cf69f1fb95009c4.jpeg"><br>文件头header包含了dex文件的信息，也是大家需要关注的部分。因为下面的操作中会有dex文件的修改操作，而判断是否是正确的dex文件是由header部分决定的。<br>下面看一下header部分的信息：</p>
+<p>Header部分有需要注意的三个字段：checksum字段、signature字段、filesize字段。<br>checksum字段： checksum是校验码字段，校验dex数据的完整性<br>signature字段： signature是SHA-1签名字段，dex数据完整性校验<br>signature字段：保存classes.dex文件总长度<br>之所以关注这三个字段，是因为后面会有对dex的重新拼接。dex拼接后要修改这三个字段，字段修改正确后才可以保证dex的正确加载。</p>
+<h3 id="3-Dex文件整体加固原理"><a href="#3-Dex文件整体加固原理" class="headerlink" title="(3) Dex文件整体加固原理"></a>(3) Dex文件整体加固原理</h3><p><img alt class="post-img b-lazy" data-img="3001322a2d7e4684e4ad175e104a7b290da74888.jpeg" data-index="2" data-src="3001322a2d7e4684e4ad175e104a7b290da74888.jpeg"><br>上图对象解析：<br>源apk：需要加密的apk程序，源dex来自于源apk<br>壳程序：Android工程，提供壳dex，壳dex主要作为工程入口，解密出源dex，映射到源dex等操作<br>加密程序：java工程，主要是做对源dex加密且和壳dex合并成新dex的操作</p>
+<h3 id="4-整个工程加载原理"><a href="#4-整个工程加载原理" class="headerlink" title="(4) 整个工程加载原理"></a>(4) 整个工程加载原理</h3><p>APP启动——&gt;自定义Application中attachBaseContext()方法——&gt;自定义Application工程onCreate()方法——&gt;源Application<br>1、自定义Application来自于壳程序的dex，加密合成的新dex前半部分就是壳程序的dex，这部分是没任何问题，可以正常加载。该Application中attachBaseContext方法会做解密操作，解密出源dex并放置在固定目录下，添加dex的加载映射；映射到源dex目录。<br>2、自定义Application工程onCreate()方法添加源dex加载的入口；即源dex的application和mainActivity。<br>3、程序正常启动；源dex被正确加载。</p>
+<h2 id="三、apk加固实现"><a href="#三、apk加固实现" class="headerlink" title="三、apk加固实现"></a>三、apk加固实现</h2><p>准备：<br>SourceProject：<br>需要加密源程序,自定义application为：<br>com. targetapk<br>MyApplication，主activity为：<br>com. targetapk.MainActivity<br>jiaguApk：java工程，dex加密合并操作<br>shellApk：android工程，提供壳dex；自定义Application设定为：<br>org.hackcode.ProxyApplication<br>SourceProject是简单的Android工程demo，编译生成生成被壳加密的sourceProject.apk<br>jiaguApk是主要作用是加密源sourceProject.apk中dex文件；然后拼接到壳dex后面生成新的dex<br>shellApk是壳工程，主要是作为加密后apk的伪入口，加密后的apk工程会先加载壳工程提供Application：org.hackcode.ProxyApplication，解密、映射等操作<br>整体加密步骤：<br>1.反编译目标app(sourceProject.apk)，得到sourceProject文件；sourceProject.apk来源于SourceProject工程<br>2.修改sourceProject文件中的manifest文件，将自定义Application设定为“org.hackcode.ProxyApplication”<br>3.拿到sourceProject文件中的dex文件，压缩为TargetApk.zip<br>4.反编译壳apk：apktool.bat d shellApk.apk，得到shellApk文件<br>5.拿到shellApk文件下的classes.dex和TargetApk.zip，加密合成新的classes.dex文件<br>6.新合成的class.dex替换sourceProject文件中的class.dex<br>7.删除sourceProject文件中的META-INF文件，重压缩成zip文件<br>8.重新签名<br>步骤2主要是是为了加载壳dex中的代码；正确解析dex。<br>步骤6主要是jiaguApk工程的工作。<br>jiaguApk关键代码<br><img alt class="post-img b-lazy" data-img="94feb86c7a47eee8e2b36f329ca9047cdcd8afd0.jpeg" data-index="3" data-src="94feb86c7a47eee8e2b36f329ca9047cdcd8afd0.jpeg"><br>以上代码主要作用是源程序dex压缩成TargetApk.zip后加密，加密后拼接在壳dex的后面，然后生成新的dex文件，dex文件修改头部参数，保证dex文件正确读取。<br>此时生成的新的dex文件前部分是能正确被运行的壳dex的代码。<br>shellApk壳工程关键代码<br><img alt class="post-img b-lazy" data-img="9e637286c8cc194e47a8546b28cdfb4e58f360aa.jpeg" data-index="4" data-src="9e637286c8cc194e47a8546b28cdfb4e58f360aa.jpeg"><br>attachBaseContext方法：<br>主要作用是程序apk中dex拷贝、解密出源dex放在data/data目录下；设置dex加载目录映射。<br><img alt class="post-img b-lazy" data-img="7ee35cd597c457a94a775a5033b341e8ccce9222.jpeg" data-index="5" data-src="7ee35cd597c457a94a775a5033b341e8ccce9222.jpeg"><br>onCreate：<br>主要作用替换源应用dex的application，使解密出的源dex正确加载；保证源入口正确，保证项目正确加载。<br>以上就是apk加壳实现整个过程。实现起来基本没什么问题，需要注意的点是源工程有多dex问题：源程序中有多个dex的时候，多个dex同时一块压缩成TargetApk.zip，然后其他步骤不变。亲测没问题！</p>
+<h2 id="四、apk该方式加固后缺陷"><a href="#四、apk该方式加固后缺陷" class="headerlink" title="四、apk该方式加固后缺陷"></a>四、apk该方式加固后缺陷</h2><h3 id="（1）首次打开加载慢的问题。"><a href="#（1）首次打开加载慢的问题。" class="headerlink" title="（1）首次打开加载慢的问题。"></a>（1）首次打开加载慢的问题。</h3><p>加固后的工程首次打开会有延时，延时时间会跟源工程的dex大小有关。就拿普元客户端来说，里面有两个dex，总共有8M左右；加固后首次打开会慢3s左右；而且以后每次打开会有2s左右的延时。</p>
+<h3 id="（2）安全性问题。"><a href="#（2）安全性问题。" class="headerlink" title="（2）安全性问题。"></a>（2）安全性问题。</h3><p>大家会发现源dex文件还是会落地，在工程的data/data目录下面，越狱的手机可以直接看到。拿到dex资源，一样可以通过反编译拿到java代码。网上有不落地的方法，尝试一直没有成功；如果哪位大神有可行方法的话，欢迎分享交流。</p>
+<p>原文发布时间为：2018-12-4<br>本文作者：张存征<br>本文来自云栖社区合作伙伴“ <a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fmp.weixin.qq.com%2Fs%2Fw1m9bI0-fFDCxMLkzi8_1g" target="_blank" rel="noopener">EAWorld</a> ”，了解相关信息可以关注“EAWorld”微信公众号</p>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/codenote/tags/Android/" rel="tag"># Android</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/codenote/tags/apk%E5%8A%A0%E5%9B%BA/" rel="tag"># apk加固</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="给 Xcode 项目增加多种 build" href="/codenote/iOS/2019/Adding-Xcode-build-configueration/">
+            ← 给 Xcode 项目增加多种 build
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="APK 签名" href="/codenote/Android/2019/apk_sign/">
+            APK 签名 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言："><span class="toc-text">引言：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目录："><span class="toc-text">目录：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、apk常见加固方式"><span class="toc-text">一、apk常见加固方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）代码层级加密–代码混淆"><span class="toc-text">（1）代码层级加密–代码混淆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）-Dex文件加密"><span class="toc-text">（2） Dex文件加密</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、apk加固原理"><span class="toc-text">二、apk加固原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-apk文件结构"><span class="toc-text">(1) apk文件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Dex文件结构"><span class="toc-text">(2) Dex文件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Dex文件整体加固原理"><span class="toc-text">(3) Dex文件整体加固原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-整个工程加载原理"><span class="toc-text">(4) 整个工程加载原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、apk加固实现"><span class="toc-text">三、apk加固实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、apk该方式加固后缺陷"><span class="toc-text">四、apk该方式加固后缺陷</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）首次打开加载慢的问题。"><span class="toc-text">（1）首次打开加载慢的问题。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）安全性问题。"><span class="toc-text">（2）安全性问题。</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Code Notebook &mdash;</small>
+    <h3 class="read-next-card-header-title">最新文章</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/codenote/dev/bash/2021/My-alias-configs/">My alias configs</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/codenote/iOS/2019/Adding-Xcode-build-configueration/">给 Xcode 项目增加多种 build</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/codenote/Android/2019/copy/apk-stronging-up/">浅谈安卓apk加固原理和实现</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/codenote/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">分类</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/Android/Flash-ROM/">Flash ROM</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/dev/">dev</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/dev/bash/">bash</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/codenote/categories/iOS/">iOS</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">标签云</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/codenote/tags/Android/" style="font-size: 24px;">Android</a> <a href="/codenote/tags/Android-ROM/" style="font-size: 14px;">Android ROM</a> <a href="/codenote/tags/App-Icon/" style="font-size: 14px;">App Icon</a> <a href="/codenote/tags/Build/" style="font-size: 14px;">Build</a> <a href="/codenote/tags/Factory-Image/" style="font-size: 14px;">Factory Image</a> <a href="/codenote/tags/Google/" style="font-size: 14px;">Google</a> <a href="/codenote/tags/Nexus/" style="font-size: 14px;">Nexus</a> <a href="/codenote/tags/Nexus4/" style="font-size: 14px;">Nexus4</a> <a href="/codenote/tags/Pixel/" style="font-size: 14px;">Pixel</a> <a href="/codenote/tags/PlistBuddy/" style="font-size: 14px;">PlistBuddy</a> <a href="/codenote/tags/PreRelease/" style="font-size: 14px;">PreRelease</a> <a href="/codenote/tags/XDA/" style="font-size: 14px;">XDA</a> <a href="/codenote/tags/Xcode/" style="font-size: 14px;">Xcode</a> <a href="/codenote/tags/aapt/" style="font-size: 14px;">aapt</a> <a href="/codenote/tags/apk/" style="font-size: 19px;">apk</a> <a href="/codenote/tags/apksigner/" style="font-size: 14px;">apksigner</a> <a href="/codenote/tags/apktool/" style="font-size: 14px;">apktool</a> <a href="/codenote/tags/apk%E5%8A%A0%E5%9B%BA/" style="font-size: 14px;">apk加固</a> <a href="/codenote/tags/bash/" style="font-size: 14px;">bash</a> <a href="/codenote/tags/hexo/" style="font-size: 14px;">hexo</a> <a href="/codenote/tags/imagemagick/" style="font-size: 14px;">imagemagick</a> <a href="/codenote/tags/recovery/" style="font-size: 14px;">recovery</a> <a href="/codenote/tags/%E5%88%B7%E6%9C%BA/" style="font-size: 19px;">刷机</a> <a href="/codenote/tags/%E7%AD%BE%E5%90%8D/" style="font-size: 14px;">签名</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="https://i.loli.net/2017/11/26/5a19c0b50432e.png" alt="Code Notebook">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="搜索 ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/codenote/" title="Code Notebook">Code Notebook &copy; 2021</a>
+			
+				
+			        <span hidden="true" id="/codenote/Android/2019/copy/apk-stronging-up/" class="leancloud-visitors" data-flag-title="浅谈安卓apk加固原理和实现">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/codenote/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/codenote/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/codenote/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/codenote/photoswipe/default-skin/default-skin.css">
+<script src="/codenote/photoswipe/photoswipe.min.js"></script>
+<script src="/codenote/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: 'B0rlNNVTefUvDwjgmvOcvxJl-gzGzoHsz',
+            appKey: 'ixDdPojgAU5ut98M3eNsgBRI',
+            placeholder: 'Say something',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

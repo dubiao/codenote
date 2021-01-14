@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Code Notebook</title>
+  <icon>http://dubiao.github.io/codenote/icon.png</icon>
+  <subtitle>Mark them. Remember them.</subtitle>
+  <link href="/codenote/atom.xml" rel="self"/>
+  
+  <link href="http://dubiao.github.io/codenote/"/>
+  <updated>2021-01-14T05:13:23.366Z</updated>
+  <id>http://dubiao.github.io/codenote/</id>
+  
+  <author>
+    <name>Bill</name>
+    <email>dubiao@gmail.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>My alias configs</title>
+    <link href="http://dubiao.github.io/codenote/dev/bash/2021/My-alias-configs/"/>
+    <id>http://dubiao.github.io/codenote/dev/bash/2021/My-alias-configs/</id>
+    <published>2021-01-14T04:16:24.000Z</published>
+    <updated>2021-01-14T05:13:23.366Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;日常工作中有很多操作繁琐而常用，尤其是一些命令或代码很长，必要的参数也很多，有时候记不住那么多，或是一个个打出来很费时间。一个比较好的解决办法是就是使用 shell 的 alias 命令来给一些命令加一个“快捷方式”，省下来的时候可以再挣个百八十万了。&lt;/p&gt;
+&lt;h3
+        
+      
+    
+    </summary>
+    
+    
+      <category term="dev" scheme="http://dubiao.github.io/codenote/categories/dev/"/>
+    
+      <category term="bash" scheme="http://dubiao.github.io/codenote/categories/dev/bash/"/>
+    
+    
+      <category term="bash" scheme="http://dubiao.github.io/codenote/tags/bash/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>给 Xcode 项目增加多种 build</title>
+    <link href="http://dubiao.github.io/codenote/iOS/2019/Adding-Xcode-build-configueration/"/>
+    <id>http://dubiao.github.io/codenote/iOS/2019/Adding-Xcode-build-configueration/</id>
+    <published>2019-10-30T03:56:53.000Z</published>
+    <updated>2021-01-14T05:13:23.362Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Build-Configuration&quot;&gt;&lt;a href=&quot;#Build-Configuration&quot; class=&quot;headerlink&quot; title=&quot;Build Configuration&quot;&gt;&lt;/a&gt;Build
+        
+      
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://dubiao.github.io/codenote/categories/iOS/"/>
+    
+    
+      <category term="Xcode" scheme="http://dubiao.github.io/codenote/tags/Xcode/"/>
+    
+      <category term="Build" scheme="http://dubiao.github.io/codenote/tags/Build/"/>
+    
+      <category term="App Icon" scheme="http://dubiao.github.io/codenote/tags/App-Icon/"/>
+    
+      <category term="PreRelease" scheme="http://dubiao.github.io/codenote/tags/PreRelease/"/>
+    
+      <category term="imagemagick" scheme="http://dubiao.github.io/codenote/tags/imagemagick/"/>
+    
+      <category term="PlistBuddy" scheme="http://dubiao.github.io/codenote/tags/PlistBuddy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅谈安卓apk加固原理和实现</title>
+    <link href="http://dubiao.github.io/codenote/Android/2019/copy/apk-stronging-up/"/>
+    <id>http://dubiao.github.io/codenote/Android/2019/copy/apk-stronging-up/</id>
+    <published>2019-10-25T02:36:16.000Z</published>
+    <updated>2021-01-14T05:13:23.370Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;from &lt;a href=&quot;https://yq.aliyun.com/articles/675072&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;云栖社区&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://dubiao.github.io/codenote/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://dubiao.github.io/codenote/tags/Android/"/>
+    
+      <category term="apk加固" scheme="http://dubiao.github.io/codenote/tags/apk%E5%8A%A0%E5%9B%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>APK 签名</title>
+    <link href="http://dubiao.github.io/codenote/Android/2019/apk_sign/"/>
+    <id>http://dubiao.github.io/codenote/Android/2019/apk_sign/</id>
+    <published>2019-10-24T05:44:33.000Z</published>
+    <updated>2021-01-14T05:13:23.366Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;APK-签名&quot;&gt;&lt;a href=&quot;#APK-签名&quot; class=&quot;headerlink&quot; title=&quot;APK 签名&quot;&gt;&lt;/a&gt;APK 签名&lt;/h2&gt;&lt;h3 id=&quot;签名v1-v2&quot;&gt;&lt;a href=&quot;#签名v1-v2&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://dubiao.github.io/codenote/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://dubiao.github.io/codenote/tags/Android/"/>
+    
+      <category term="apk" scheme="http://dubiao.github.io/codenote/tags/apk/"/>
+    
+      <category term="apksigner" scheme="http://dubiao.github.io/codenote/tags/apksigner/"/>
+    
+      <category term="签名" scheme="http://dubiao.github.io/codenote/tags/%E7%AD%BE%E5%90%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>查看 Apk 文件信息</title>
+    <link href="http://dubiao.github.io/codenote/Android/2019/check_apk_info/"/>
+    <id>http://dubiao.github.io/codenote/Android/2019/check_apk_info/</id>
+    <published>2019-10-24T03:51:57.000Z</published>
+    <updated>2021-01-14T05:13:23.366Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Apk 信息&lt;/p&gt;
+&lt;h2 id=&quot;提取资源-ApkTool&quot;&gt;&lt;a href=&quot;#提取资源-ApkTool&quot; class=&quot;headerlink&quot; title=&quot;提取资源 ApkTool&quot;&gt;&lt;/a&gt;提取资源 ApkTool&lt;/h2&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://dubiao.github.io/codenote/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://dubiao.github.io/codenote/tags/Android/"/>
+    
+      <category term="apk" scheme="http://dubiao.github.io/codenote/tags/apk/"/>
+    
+      <category term="apktool" scheme="http://dubiao.github.io/codenote/tags/apktool/"/>
+    
+      <category term="aapt" scheme="http://dubiao.github.io/codenote/tags/aapt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[GUIDE] Increase your Nexus 4 s system partition for more space!</title>
+    <link href="http://dubiao.github.io/codenote/Android/Flash-ROM/2019/copy/increse_rom_partition_size/"/>
+    <id>http://dubiao.github.io/codenote/Android/Flash-ROM/2019/copy/increse_rom_partition_size/</id>
+    <published>2019-10-18T02:37:05.000Z</published>
+    <updated>2021-01-14T05:13:23.370Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;from &lt;a href=&quot;https://forum.xda-developers.com/nexus-4/general/guide-increase-nexus-4s-partition-space-t3800264&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://dubiao.github.io/codenote/categories/Android/"/>
+    
+      <category term="Flash ROM" scheme="http://dubiao.github.io/codenote/categories/Android/Flash-ROM/"/>
+    
+    
+      <category term="Android" scheme="http://dubiao.github.io/codenote/tags/Android/"/>
+    
+      <category term="recovery" scheme="http://dubiao.github.io/codenote/tags/recovery/"/>
+    
+      <category term="Nexus4" scheme="http://dubiao.github.io/codenote/tags/Nexus4/"/>
+    
+      <category term="刷机" scheme="http://dubiao.github.io/codenote/tags/%E5%88%B7%E6%9C%BA/"/>
+    
+      <category term="XDA" scheme="http://dubiao.github.io/codenote/tags/XDA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Factory Images for Nexus and Pixel Devices</title>
+    <link href="http://dubiao.github.io/codenote/Android/Flash-ROM/2019/copy/factory_images_for_nexus_and_pixel_devices/"/>
+    <id>http://dubiao.github.io/codenote/Android/Flash-ROM/2019/copy/factory_images_for_nexus_and_pixel_devices/</id>
+    <published>2019-10-18T02:36:16.000Z</published>
+    <updated>2021-01-14T05:13:23.370Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;from &lt;a href=&quot;https://developers.google.com/android/images&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://dubiao.github.io/codenote/categories/Android/"/>
+    
+      <category term="Flash ROM" scheme="http://dubiao.github.io/codenote/categories/Android/Flash-ROM/"/>
+    
+    
+      <category term="Android" scheme="http://dubiao.github.io/codenote/tags/Android/"/>
+    
+      <category term="刷机" scheme="http://dubiao.github.io/codenote/tags/%E5%88%B7%E6%9C%BA/"/>
+    
+      <category term="Android ROM" scheme="http://dubiao.github.io/codenote/tags/Android-ROM/"/>
+    
+      <category term="Nexus" scheme="http://dubiao.github.io/codenote/tags/Nexus/"/>
+    
+      <category term="Pixel" scheme="http://dubiao.github.io/codenote/tags/Pixel/"/>
+    
+      <category term="Factory Image" scheme="http://dubiao.github.io/codenote/tags/Factory-Image/"/>
+    
+      <category term="Google" scheme="http://dubiao.github.io/codenote/tags/Google/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://dubiao.github.io/codenote/hexo/2019/hello-world/"/>
+    <id>http://dubiao.github.io/codenote/hexo/2019/hello-world/</id>
+    <published>2019-10-09T16:00:00.000Z</published>
+    <updated>2021-01-14T05:13:23.374Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://dubiao.github.io/codenote/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://dubiao.github.io/codenote/tags/hexo/"/>
+    
+  </entry>
+  
+</feed>
